@@ -16,16 +16,13 @@ public class JpaMain {
         transaction.begin();
 
         try {
- //           Member memberA = em.find(Member.class, 1L);
-            //JPQL
-            List<Member> result = em.createQuery("select m from Member as m", Member.class).
-                    getResultList();
-            for (Member member : result) {
-                System.out.println("member.getId() = " + member.getId());
-                System.out.println("member.getName() = " + member.getName());
-            }
+            Member member1 = new Member(1001L, "MemberA");
+            Member member2 = new Member(1002L, "MemberB");
 
-//            em.persist(memberA); // 이렇게 해주어야할 것 같지만 이렇게 해주지 않아도 쿼리가 나감
+            //각각 영속성 컨텍스트 1차 캐시에 저장됨. 그리고 지연쓰기 sql에 쿼리가 하나하나 저장됨.
+            em.persist(member1);
+            em.persist(member2);
+            System.out.println("======================");
 
             transaction.commit(); // 마지막 데이터변경 commit
         } catch (Exception e) {
