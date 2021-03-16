@@ -15,14 +15,12 @@ public class JpaMain {
         EntityTransaction transaction = em.getTransaction();
         transaction.begin();
 
+        //입
         try {
-            Member member1 = new Member(1001L, "MemberA");
-            Member member2 = new Member(1002L, "MemberB");
+            Member member = new Member();
+            member.setUsername("ChoiYoung");
 
-            //각각 영속성 컨텍스트 1차 캐시에 저장됨. 그리고 지연쓰기 sql에 쿼리가 하나하나 저장됨.
-            em.persist(member1);
-            em.persist(member2);
-            System.out.println("======================");
+            em.persist(member);
 
             transaction.commit(); // 마지막 데이터변경 commit
         } catch (Exception e) {

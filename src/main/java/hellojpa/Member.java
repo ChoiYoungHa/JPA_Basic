@@ -1,27 +1,22 @@
 package hellojpa;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Date;
+import java.util.IdentityHashMap;
 
 @Entity //jpa를 사용한다 객체로 인식
+@TableGenerator(
+        name = "MEMBER_SEQ_GENERATOR",
+        table = "MY_SEQUENCES",
+        pkColumnValue = "MEMBER_SEQ", allocationSize = 1)
 public class Member {
-
-    public Member(){
-
-    }
-
-    public Member(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    // jpa에게 pk를 알려줌. 또 어노테이션중에
-    // 비슷한 녀석들이 있는데 무조건 javax로 시작하는거 선택
     @Id
-    private Long id; // db에 있는 속성들을 맞춰준다.
-    private String name;
+    @GeneratedValue(strategy = GenerationType.TABLE,
+            generator = "MEMBER_SEQ_GENERATOR")
+    private Long id;
+
+    @Column(name = "name", nullable = false) // 디폴트값이 true지만,false를 주게되면 not null 제약조건이 걸림
+    private String username;
 
     public Long getId() {
         return id;
@@ -31,11 +26,15 @@ public class Member {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
+
+    public Member() {
+    }
+
 }
