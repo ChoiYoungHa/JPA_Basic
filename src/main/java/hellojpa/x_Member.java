@@ -4,12 +4,12 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.IdentityHashMap;
 
-@Entity //jpa를 사용한다 객체로 인식
+//@Entity //jpa를 사용한다 객체로 인식
 @TableGenerator(
         name = "MEMBER_SEQ_GENERATOR",
         table = "MY_SEQUENCES",
         pkColumnValue = "MEMBER_SEQ", allocationSize = 1)
-public class Member {
+public class x_Member {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE,
             generator = "MEMBER_SEQ_GENERATOR")
@@ -34,7 +34,7 @@ public class Member {
         this.username = username;
     }
 
-    public Member() {
+    public x_Member() {
     }
 
 }

@@ -4,9 +4,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.List;
 
-public class JpaMain {
+public class x_JpaMain {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
 
@@ -17,10 +16,10 @@ public class JpaMain {
 
         //입
         try {
-            Member member = new Member();
-            member.setUsername("ChoiYoung");
+            x_Member xMember = new x_Member();
+            xMember.setUsername("ChoiYoung");
 
-            em.persist(member);
+            em.persist(xMember);
 
             transaction.commit(); // 마지막 데이터변경 commit
         } catch (Exception e) {
