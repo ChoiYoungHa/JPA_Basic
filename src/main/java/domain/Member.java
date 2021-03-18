@@ -1,6 +1,9 @@
 package domain;
 
 import javax.persistence.*;
+import java.lang.annotation.Native;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Member {
@@ -9,12 +12,15 @@ public class Member {
     @Column(name = "MEMBER_ID")
     private Long id;
 
-    @Column(name = "USERNAME")
-    private String username;
+    @Column(name = "USER_NAME")
+    private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "TEAM_ID")
-    private Team team;
+    @OneToMany(mappedBy = "member")
+    private List<Order> orders = new ArrayList<>();
+
+    private String city;
+    private String street;
+    private int zipcode;
 
     public Long getId() {
         return id;
@@ -24,19 +30,43 @@ public class Member {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Team getTeam() {
-        return team;
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public int getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(int zipcode) {
+        this.zipcode = zipcode;
     }
 }
