@@ -1,9 +1,20 @@
-package domain;
+package MappingExample;
 
 import javax.persistence.*;
 
 @Entity
 public class OrderItem {
+
+    public OrderItem(){
+    }
+
+    public OrderItem(Order order, Item item, int orderPrice, int count) {
+        this.order = order;
+        this.item = item;
+        this.orderPrice = orderPrice;
+        this.count = count;
+    }
+
     @Id @GeneratedValue
     @Column(name = "ORDER_ITEM_ID")
     private Long id;
@@ -17,6 +28,7 @@ public class OrderItem {
     private Item item;
 
     private int orderPrice;
+
     private int count;
 
     public Long getId() {

@@ -1,25 +1,34 @@
-package domain;
+package MappingExample;
 
-import javax.persistence.*;
-import java.lang.annotation.Native;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 public class Member {
 
-    @Id @GeneratedValue
+    public Member(){
+    }
+
+    public Member(String city, String name, String street, int zipcode) {
+        this.city = city;
+        this.name = name;
+        this.street = street;
+        this.zipcode = zipcode;
+    }
+
+    @Id
+    @GeneratedValue
     @Column(name = "MEMBER_ID")
     private Long id;
 
-    @Column(name = "USER_NAME")
+    private String city;
+
     private String name;
 
-    @OneToMany(mappedBy = "member")
-    private List<Order> orders = new ArrayList<>();
-
-    private String city;
     private String street;
+
     private int zipcode;
 
     public Long getId() {
@@ -30,28 +39,20 @@ public class Member {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
-
     public String getCity() {
         return city;
     }
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getStreet() {

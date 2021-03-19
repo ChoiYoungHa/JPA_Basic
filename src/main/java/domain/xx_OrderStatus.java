@@ -1,5 +1,5 @@
 package domain;
 
-public enum OrderStatus {
+public enum xx_OrderStatus {
     ORDER, CANCLE
 }

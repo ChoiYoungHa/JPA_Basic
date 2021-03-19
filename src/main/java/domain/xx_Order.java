@@ -5,9 +5,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+//@Entity
 @Table(name = "ORDERS")
-public class Order {
+public class xx_Order {
 
     @Id @GeneratedValue
     @Column(name = "ORDER_ID")
@@ -15,15 +15,15 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
-    private Member member;
+    private xx_Member member;
 
     private LocalDateTime orderDate;
 
     @Enumerated(EnumType.STRING)
-    private OrderStatus orderStatus;
+    private xx_OrderStatus orderStatus;
 
     @OneToMany(mappedBy = "order")
-    private List<OrderItem> orderItems = new ArrayList<>();
+    private List<xx_OrderItem> orderItems = new ArrayList<>();
 
 
     public Long getId() {
@@ -34,11 +34,11 @@ public class Order {
         this.id = id;
     }
 
-    public Member getMember() {
+    public xx_Member getMember() {
         return member;
     }
 
-    public void setMember(Member member) {
+    public void setMember(xx_Member member) {
         this.member = member;
     }
 
@@ -50,19 +50,19 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public OrderStatus getOrderStatus() {
+    public xx_OrderStatus getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(OrderStatus orderStatus) {
+    public void setOrderStatus(xx_OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
     }
 
-    public List<OrderItem> getOrderItems() {
+    public List<xx_OrderItem> getOrderItems() {
         return orderItems;
     }
 
-    public void setOrderItems(List<OrderItem> orderItems) {
+    public void setOrderItems(List<xx_OrderItem> orderItems) {
         this.orderItems = orderItems;
     }
 
