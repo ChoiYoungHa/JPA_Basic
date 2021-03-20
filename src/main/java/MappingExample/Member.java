@@ -1,27 +1,18 @@
 package MappingExample;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Member {
-
-    public Member(){
-    }
-
-    public Member(String city, String name, String street, int zipcode) {
-        this.city = city;
-        this.name = name;
-        this.street = street;
-        this.zipcode = zipcode;
-    }
 
     @Id
     @GeneratedValue
     @Column(name = "MEMBER_ID")
     private Long id;
+
+    @OneToOne
+    @JoinColumn(name = "LOCKER_ID")
+    private Locker locker;
 
     private String city;
 
@@ -68,6 +59,16 @@ public class Member {
     }
 
     public void setZipcode(int zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public Member(){
+    }
+
+    public Member(String city, String name, String street, int zipcode) {
+        this.city = city;
+        this.name = name;
+        this.street = street;
         this.zipcode = zipcode;
     }
 }
