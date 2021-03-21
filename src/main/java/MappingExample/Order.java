@@ -9,24 +9,8 @@ import java.util.List;
 @Table(name = "ORDERS")
 public class Order {
 
-    public Order(){
-    }
-    public Order(Member member, LocalDateTime date, OrderStatus state) {
-        this.member = member;
-        this.date = date;
-        this.state = state;
-    }
-
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems = new ArrayList<>();
-
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setOrderItems(List<OrderItem> orderItems) {
-        this.orderItems = orderItems;
-    }
 
     @Id @GeneratedValue
     @Column(name = "ORDER_ID")
@@ -36,10 +20,18 @@ public class Order {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
+    @OneToOne
+    @JoinColumn(name = "DELEVERY_ID")
+    private Delivery delivery;
+
     private LocalDateTime date;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus state;
+
+
+
+
 
     public Long getId() {
         return id;
@@ -70,6 +62,22 @@ public class Order {
     }
 
     public void setState(OrderStatus state) {
+        this.state = state;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    public Order(){
+    }
+    public Order(Member member, LocalDateTime date, OrderStatus state) {
+        this.member = member;
+        this.date = date;
         this.state = state;
     }
 }
