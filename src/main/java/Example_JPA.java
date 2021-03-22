@@ -1,5 +1,7 @@
 import MappingExample.*;
 import domain.*;
+import highMapping.Item;
+import highMapping.Movie;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,6 +19,20 @@ public class Example_JPA {
         tx.begin();
 
         try {
+            Movie movie = new Movie();
+            movie.setActor("bbbb");
+            movie.setDirector("봉준호");
+            movie.setName("기생충");
+            movie.setPrice(20000);
+
+            em.persist(movie);
+
+            em.flush();
+            em.clear();
+
+            Item findMove = em.find(Item.class, movie.getId());// 조인해서 가져옴.
+            System.out.println("findMove = " + findMove);
+
 
             tx.commit();
         } catch (Exception e) {

@@ -1,5 +1,7 @@
 package MappingExample;
 
+import highMapping.Item;
+
 import javax.persistence.*;
 
 @Entity
@@ -45,14 +47,6 @@ public class OrderItem {
 
     public void setOrder(Order order) {
         this.order = order;
-    }
-
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
     }
 
     public int getOrderPrice() {

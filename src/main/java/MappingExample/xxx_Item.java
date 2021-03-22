@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-public class Item {
+//@Entity
+public class xxx_Item {
 
     @Id @GeneratedValue
     @Column(name = "ITEM_ID")
@@ -51,9 +51,9 @@ public class Item {
         this.stockQuantity = stockQuantity;
     }
 
-    public Item(){
+    public xxx_Item(){
     }
-    public Item(String name, int price, int stockQuantity) {
+    public xxx_Item(String name, int price, int stockQuantity) {
         this.name = name;
         this.price = price;
         this.stockQuantity = stockQuantity;
