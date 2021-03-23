@@ -18,6 +18,7 @@ public class Example_JPA {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
+        //h2 데이터베이스 연동
         try {
             Movie movie = new Movie();
             movie.setActor("bbbb");
