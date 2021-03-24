@@ -18,22 +18,18 @@ public class Example_JPA {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
-        //h2 데이터베이스 연동
         try {
-            Movie movie = new Movie();
-            movie.setActor("bbbb");
-            movie.setDirector("봉준호");
-            movie.setName("기생충");
-            movie.setPrice(20000);
 
-            em.persist(movie);
+            Member member = new Member();
+            member.setName("Hello");
+            em.persist(member);
 
             em.flush();
             em.clear();
 
-            Item findMove = em.find(Item.class, movie.getId());// 조인해서 가져옴.
-            System.out.println("findMove = " + findMove);
-
+            Member findMember = em.find(Member.class, 1L);
+            System.out.println("findMember.getName() = " + findMember.getName());
+            System.out.println("findMember.getId() = " + findMember.getId());
 
             tx.commit();
         } catch (Exception e) {
