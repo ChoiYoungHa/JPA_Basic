@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.List;
 
+//Member DB
 public class Example_JPA {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
