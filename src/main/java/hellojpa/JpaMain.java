@@ -1,7 +1,13 @@
 package hellojpa;
 
+import hellojpa.example.Person;
+import hellojpa.example.Team;
 import jakarta.persistence.*;
+import jpashop.domain.Item;
+import jpashop.domain.Order;
+import jpashop.domain.OrderItem;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class JpaMain {
@@ -13,17 +19,30 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
 
         tx.begin();
-        try {
-            List<Member> resultList = em.createQuery("select m from Member as m", Member.class).
-                    getResultList();
 
-            for (Member member : resultList) {
-                System.out.println("member.getName() = " + member.getName());
+        try {
+            Team team = new Team();
+            team.setTeamName("TeamA");
+            em.persist(team);
+
+            Person member = new Person();
+            member.setUserName("MemberA");
+            member.ChangeTeam(team);
+            em.persist(member);
+
+
+
+            Team findTeam = em.find(Team.class, team.getTeamId());
+
+            List<Person> members = findTeam.getMembers();
+
+
+            for (Person person : members) {
+                System.out.println("person.getUserName() = " + person.getUserName());
             }
 
-
-
-        }catch (Exception e) {
+            tx.commit();
+        } catch (Exception e) {
             tx.rollback();
         }finally {
             em.close();
